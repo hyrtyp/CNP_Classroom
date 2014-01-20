@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="@dimen/cnp_school_layout_margin"
+    android:background="#ffffff">
+    <ImageView
+        android:id="@+id/item_album_image"
+        android:layout_width="@dimen/cnp_classroom_ablum_img_height"
+        android:layout_height="@dimen/cnp_classroom_ablum_img_height"
+        android:layout_marginRight="@dimen/cnp_school_layout_margin"
+        android:background="@drawable/image_test4"
+        android:layout_gravity="center_vertical"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/cnp_school_layout_margin"
+        android:layout_marginRight="@dimen/cnp_school_layout_margin"
+        >
+        <TextView
+            android:id="@+id/item_album_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记一次班级志愿者活动的体验和感受"
+            android:textColor="@color/sendword_text_color"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="@dimen/cnp_school_item_text_size" />
+
+        <TextView
+            android:id="@+id/item_album_con"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记一次班级志愿者活动的体验和感受"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="@dimen/cnp_school_text_size_min" />
+        <TextView
+            android:id="@+id/item_album_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记一次班级志愿者活动的体验和感受"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="@dimen/cnp_school_text_size_min" />
+    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/cnp_next"
+        android:layout_marginRight="@dimen/cnp_school_layout_margin"/>
+</LinearLayout>

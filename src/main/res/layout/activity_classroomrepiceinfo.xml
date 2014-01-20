@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cnp_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/cnp_school_layout"
+        >
+        <TextView
+            android:id="@+id/recipe_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上一天"
+            android:textSize="@dimen/cnp_school_text_size_min"
+            android:textColor="#ffffff"
+            android:background="@color/classroomindex_teacher"
+            android:padding="@dimen/cnp_school_text_margin_max"
+            />
+        <TextView
+            android:gravity="center"
+            android:id="@+id/foottimetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2013-12-10 食谱"
+            android:textSize="@dimen/cnp_school_text_size_min"
+            android:layout_weight="1"
+            android:textColor="@color/cnp_text_color_black"
+            />
+        <TextView
+            android:id="@+id/recipe_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下一天"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/cnp_school_text_size_min"
+            android:background="@color/classroomindex_teacher"
+            android:padding="@dimen/cnp_school_text_margin_max"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        style="@style/cnp_school_layout"
+        android:background="@color/cnp_line_color"/>
+        <ListView
+            android:id="@+id/recipeinfo_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="1px"
+            style="@style/cnp_school_layout"
+            android:layout_marginTop="0dp"
+            />
+</LinearLayout>
