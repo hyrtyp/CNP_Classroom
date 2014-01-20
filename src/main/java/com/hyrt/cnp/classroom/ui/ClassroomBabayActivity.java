@@ -14,7 +14,7 @@ import com.octo.android.robospice.persistence.DurationInMillis;
 
 /**
  * Created by GYH on 14-1-16.
- * 班级专辑
+ * 班级成员
  */
 public class ClassroomBabayActivity extends BaseActivity{
 
@@ -23,15 +23,14 @@ public class ClassroomBabayActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_classroomphotolist);
+        setContentView(R.layout.activity_classroombabay);
         initView();
         loadData();
     }
-
     public void updateUI(ClassRoomBabay.Model model){
         String[] resKeys=new String[]{"getLogopath","getRenname"};
         int[] reses=new int[]{R.id.gridview_image,R.id.item_album_title};
-        classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image1,resKeys,reses);
+        classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image3,resKeys,reses);
         gridView.setAdapter(classRoomAdapter);
 
     }

@@ -7,5 +7,5 @@
     android:gravity="center"
     android:divider="@color/cnp_line_color"
     android:dividerHeight="1px"
-    style="@style/cnp_school_layout"
+    android:layout_marginTop="@dimen/cnp_school_layout_margin"
     />

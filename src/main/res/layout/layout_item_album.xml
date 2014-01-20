@@ -10,6 +10,7 @@
         android:id="@+id/item_album_image"
         android:layout_width="@dimen/cnp_classroom_ablum_img_height"
         android:layout_height="@dimen/cnp_classroom_ablum_img_height"
+        android:layout_marginRight="@dimen/cnp_school_layout_margin"
         android:background="@drawable/image_test4"
         android:layout_gravity="center_vertical"
         />

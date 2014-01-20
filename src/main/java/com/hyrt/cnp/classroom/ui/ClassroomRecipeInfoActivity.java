@@ -2,7 +2,6 @@ package com.hyrt.cnp.classroom.ui;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,7 +24,7 @@ import java.util.Date;
  */
 public class ClassroomRecipeInfoActivity extends BaseActivity {
 
-    private Date date = new java.util.Date();
+    public Date date = new java.util.Date();
     private ListView listview;
     private RepiceInfoAdapter repiceInfoAdapter;
     private String[] footstime = new String[]{"早餐", "早餐配料", "加餐", "午餐", "午餐配料", "午点", "晚餐", "晚餐配料", "日营养量", "负责人"};
@@ -83,14 +82,14 @@ public class ClassroomRecipeInfoActivity extends BaseActivity {
     private void initView() {
         foottimetext = (TextView) findViewById(R.id.foottimetext);
         listview = (ListView) findViewById(R.id.recipeinfo_listview);
-        Button recipelast = (Button) findViewById(R.id.recipe_last);
+        TextView recipelast = (TextView) findViewById(R.id.recipe_last);
         recipelast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loadData(FormatUtils.preDay(date));
             }
         });
-        Button recipenext = (Button) findViewById(R.id.recipe_next);
+        TextView recipenext = (TextView) findViewById(R.id.recipe_next);
         recipenext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
