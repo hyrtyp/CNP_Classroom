@@ -1,8 +1,13 @@
 package com.hyrt.cnp.classroom.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import com.hyrt.cnp.account.model.ClassRoomBabay;
 import com.hyrt.cnp.account.model.Photo;
 import com.hyrt.cnp.classroom.R;
@@ -20,6 +25,11 @@ public class ClassroomBabayActivity extends BaseActivity{
 
     private GridView gridView;
     private ClassRoomAdapter classRoomAdapter;
+
+    @Inject
+    @Named("babayIndexActivity")
+    private Class babayIndexActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +46,15 @@ public class ClassroomBabayActivity extends BaseActivity{
     }
     private void initView(){
         gridView =(GridView)findViewById(R.id.cnp_gridview);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent();
+                intent.setClass(ClassroomBabayActivity.this,babayIndexActivity);
+                intent.putExtra("babayid","123");
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadData(){
