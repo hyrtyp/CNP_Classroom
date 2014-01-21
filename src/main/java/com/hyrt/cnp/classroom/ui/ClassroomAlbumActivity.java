@@ -31,6 +31,19 @@ public class ClassroomAlbumActivity extends BaseActivity{
         loadData();
     }
 
+    @Override
+    protected void initTitleview() {
+        super.initTitleview();
+
+        Intent intent=getIntent();
+        String Category=intent.getStringExtra("Category");
+        if(Category.equals("ClassroomIndexActivity")){
+//            titletext.setText("");
+        }else if(Category.equals("BabayIndexActivity")){
+            titletext.setText("动感相册");
+        }
+    }
+
     public void updateUI(Album.Model model){
         String[] resKeys=new String[]{"getImagepath","getAlbumName","getAlbumDesc","getPosttime"};
         int[] reses=new int[]{R.id.item_album_image,R.id.item_album_title,R.id.item_album_con,R.id.item_album_time};

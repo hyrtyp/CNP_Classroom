@@ -60,7 +60,10 @@ public class ClassroomIndexActivity extends BaseActivity{
                     startActivity(new Intent().setClass(ClassroomIndexActivity.this,ClassroomRecipeInfoActivity.class));
                     break;
                 case 2:
-                    startActivity(new Intent().setClass(ClassroomIndexActivity.this,ClassroomAlbumActivity.class));
+                    intent =new Intent();
+                    intent.setClass(ClassroomIndexActivity.this,ClassroomAlbumActivity.class);
+                    intent.putExtra("Category","ClassroomIndexActivity");
+                    startActivity(intent);
                     break;
                 case 3:
                     startActivity(new Intent().setClass(ClassroomIndexActivity.this,ClassroomBabayActivity.class));
