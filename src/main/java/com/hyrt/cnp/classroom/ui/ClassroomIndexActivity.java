@@ -5,12 +5,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import com.hyrt.cnp.account.model.ClassRoom;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.ClassroomIndexAdapter;
+import com.hyrt.cnp.classroom.request.ClassroomInfoRequest;
+import com.hyrt.cnp.classroom.requestListener.ClassroomInfoRequestListener;
 import com.jingdong.common.frame.BaseActivity;
+import com.octo.android.robospice.persistence.DurationInMillis;
 
 import roboguice.RoboGuice;
 
@@ -23,6 +28,7 @@ public class ClassroomIndexActivity extends BaseActivity{
     private String[] text={"班级公告","每日食谱","班级相册","班级成员"};
     private int[] bg;
     private Intent intent;
+    private TextView renname,rennames;
     @Inject
     @Named("schoolNoticeActivity")
     private Class schoolNoticeActivity;
@@ -33,9 +39,12 @@ public class ClassroomIndexActivity extends BaseActivity{
         setContentView(R.layout.activity_classroomindex);
         RoboGuice.getInjector(this.getApplicationContext()).injectMembers(this);
         initView();
+        LoadData();
     }
 
     private void initView(){
+        renname=(TextView)findViewById(R.id.text_renname);
+        rennames=(TextView)findViewById(R.id.text_rennames);
         imageResId = new int[] { R.drawable.classroom_notice, R.drawable.classroom_recipe,
                 R.drawable.classroom_photo, R.drawable.classroom_member};
         bg = new int[]{R.color.classroomindex_notice,R.color.classroomindex_recipe,
@@ -44,6 +53,18 @@ public class ClassroomIndexActivity extends BaseActivity{
         ClassroomIndexAdapter schoolIndexAdapter=new ClassroomIndexAdapter(text,imageResId,bg,this);
         gridView.setAdapter(schoolIndexAdapter);
         gridView.setOnItemClickListener(new ItemClickListener());
+    }
+
+    private void LoadData(){
+        ClassroomInfoRequestListener sendwordRequestListener = new ClassroomInfoRequestListener(this);
+        ClassroomInfoRequest schoolRecipeRequest=new ClassroomInfoRequest(ClassRoom.Model2.class,this);
+        spiceManager.execute(schoolRecipeRequest, schoolRecipeRequest.getcachekey(), DurationInMillis.ONE_SECOND * 10,
+                sendwordRequestListener.start());
+    }
+
+    public void updateUI(ClassRoom.Model2 model2){
+        renname.setText("班主任："+model2.getData().getRenname());
+        rennames.setText("教师："+model2.getData().getRennames());
     }
 
     class  ItemClickListener implements AdapterView.OnItemClickListener {
@@ -68,19 +89,6 @@ public class ClassroomIndexActivity extends BaseActivity{
                 case 3:
                     startActivity(new Intent().setClass(ClassroomIndexActivity.this,ClassroomBabayActivity.class));
                     break;
-//                case 4:
-//                    startActivity(new Intent().setClass(ClassroomIndexActivity.this,StarBabayActivity.class));
-//                    break;
-//                case 5:
-//                    startActivity(new Intent().setClass(ClassroomIndexActivity.this,SchoolInfoActivity.class));
-//                    break;
-//                case 6:
-//                    startActivity(new Intent().setClass(ClassroomIndexActivity.this,ClassRoomListActivity.class));
-//                    break;
-//                case 7:
-//                    startActivity(new Intent().setClass(ClassroomIndexActivity.this,SchoolRecipeActivity.class));
-//                    break;
-
             }
         }
     }

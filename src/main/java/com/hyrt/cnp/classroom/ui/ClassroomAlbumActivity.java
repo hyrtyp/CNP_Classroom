@@ -22,29 +22,28 @@ public class ClassroomAlbumActivity extends BaseActivity{
 
     private ListView listview;
     private ClassRoomAdapter classRoomAdapter;
+    private String Category;
+    private Album.Model model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classroomalbum);
         initView();
-        loadData();
-    }
-
-    @Override
-    protected void initTitleview() {
-        super.initTitleview();
-
         Intent intent=getIntent();
-        String Category=intent.getStringExtra("Category");
+        Category=intent.getStringExtra("Category");
         if(Category.equals("ClassroomIndexActivity")){
-//            titletext.setText("");
+            titletext.setText("班级相册");
         }else if(Category.equals("BabayIndexActivity")){
             titletext.setText("动感相册");
         }
+        loadData();
     }
 
+
+
     public void updateUI(Album.Model model){
+        this.model=model;
         String[] resKeys=new String[]{"getImagepath","getAlbumName","getAlbumDesc","getPosttime"};
         int[] reses=new int[]{R.id.item_album_image,R.id.item_album_title,R.id.item_album_con,R.id.item_album_time};
         classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_album,resKeys,reses);
@@ -56,7 +55,10 @@ public class ClassroomAlbumActivity extends BaseActivity{
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent().setClass(ClassroomAlbumActivity.this,ClassroomphotolistActivity.class));
+                Intent intent = new Intent();
+                intent.setClass(ClassroomAlbumActivity.this,ClassroomphotolistActivity.class);
+                intent.putExtra("vo",model.getData().get(i));
+                startActivity(intent);
             }
         });
     }

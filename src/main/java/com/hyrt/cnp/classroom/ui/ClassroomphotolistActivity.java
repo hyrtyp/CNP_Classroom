@@ -1,10 +1,12 @@
 package com.hyrt.cnp.classroom.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.hyrt.cnp.account.model.Album;
 import com.hyrt.cnp.account.model.Photo;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.ClassRoomAdapter;
@@ -20,6 +22,7 @@ public class ClassroomphotolistActivity extends BaseActivity{
 
     private GridView gridView;
     private ClassRoomAdapter classRoomAdapter;
+    private Photo.Model model;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,26 +31,41 @@ public class ClassroomphotolistActivity extends BaseActivity{
         loadData();
     }
 
-    public void updateUI(final Photo.Model model){
+    public void updateUI(Photo.Model model){
+        this.model=model;
         String[] resKeys=new String[]{"getImagethpath","getTitle"};
         int[] reses=new int[]{R.id.gridview_image,R.id.item_album_title};
         classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image1,resKeys,reses);
         gridView.setAdapter(classRoomAdapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        ShowPop(gridView,model.getData().get(i).getImagepics());
-            }
-        });
+
     }
     private void initView(){
         gridView =(GridView)findViewById(R.id.cnp_gridview);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent();
+                intent.setClass(ClassroomphotolistActivity.this,ClassroomphotoinfoActivity.class);
+                intent.putExtra("vo",model.getData().get(i));
+                startActivity(intent);
+//                        ShowPop(gridView,model.getData().get(i).getImagepics());
+            }
+        });
     }
 
     private void loadData(){
+        Intent intent = getIntent();
+        Album album = (Album)intent.getSerializableExtra("vo");
         ClassroomPhotoListRequestListener sendwordRequestListener = new ClassroomPhotoListRequestListener(this);
-        ClassroomPhotoListRequest schoolRecipeRequest=new ClassroomPhotoListRequest(Photo.Model.class,this);
+        ClassroomPhotoListRequest schoolRecipeRequest=new ClassroomPhotoListRequest(Photo.Model.class,this,album.getPaId());
         spiceManager.execute(schoolRecipeRequest, schoolRecipeRequest.getcachekey(), DurationInMillis.ONE_SECOND * 10,
                 sendwordRequestListener.start());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        model=null;
+        classRoomAdapter=null;
     }
 }

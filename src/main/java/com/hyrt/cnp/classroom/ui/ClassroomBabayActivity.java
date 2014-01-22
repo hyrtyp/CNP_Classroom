@@ -42,7 +42,6 @@ public class ClassroomBabayActivity extends BaseActivity{
         int[] reses=new int[]{R.id.gridview_image,R.id.item_album_title};
         classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image3,resKeys,reses);
         gridView.setAdapter(classRoomAdapter);
-
     }
     private void initView(){
         gridView =(GridView)findViewById(R.id.cnp_gridview);
