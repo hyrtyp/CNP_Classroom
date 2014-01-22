@@ -3,19 +3,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/container_view"
     android:background="@drawable/shape_sendword_no_top_line"
     >
     <TextView
         android:id="@+id/item_foottime"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        style="@style/cnp_school_text_min"
+        style="@style/medium_tv"
         android:text="早餐"
+        android:layout_margin="0dp"
         android:singleLine="true"
         android:minWidth="100dp"
-        android:paddingTop="@dimen/cnp_school_layout_margin"
-        android:paddingBottom="@dimen/cnp_school_layout_margin"
         />
     <TextView
         android:layout_width="1px"
@@ -25,10 +25,10 @@
         android:id="@+id/item_footcont"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        style="@style/cnp_school_text_min"
+        style="@style/medium_tv"
+        android:layout_margin="0dp"
+        android:paddingLeft="@dimen/view_margin_small"
         android:layout_weight="1"
         android:text="fjldjfdlkjj"
-        android:paddingTop="@dimen/cnp_school_layout_margin"
-        android:paddingBottom="@dimen/cnp_school_layout_margin"
         />
 </LinearLayout>
