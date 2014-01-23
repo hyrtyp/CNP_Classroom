@@ -25,6 +25,7 @@ public class ClassroomBabayActivity extends BaseActivity{
 
     private GridView gridView;
     private ClassRoomAdapter classRoomAdapter;
+    private ClassRoomBabay.Model model;
 
     @Inject
     @Named("babayIndexActivity")
@@ -38,6 +39,7 @@ public class ClassroomBabayActivity extends BaseActivity{
         loadData();
     }
     public void updateUI(ClassRoomBabay.Model model){
+        this.model=model;
         String[] resKeys=new String[]{"getLogopath","getRenname"};
         int[] reses=new int[]{R.id.gridview_image,R.id.item_album_title};
         classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image3,resKeys,reses);
@@ -50,7 +52,7 @@ public class ClassroomBabayActivity extends BaseActivity{
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent();
                 intent.setClass(ClassroomBabayActivity.this,babayIndexActivity);
-                intent.putExtra("babayid","123");
+                intent.putExtra("vo",model.getData().get(i));
                 startActivity(intent);
             }
         });

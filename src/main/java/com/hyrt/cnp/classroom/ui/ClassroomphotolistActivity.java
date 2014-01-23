@@ -23,6 +23,7 @@ public class ClassroomphotolistActivity extends BaseActivity{
     private GridView gridView;
     private ClassRoomAdapter classRoomAdapter;
     private Photo.Model model;
+    private String  Category;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,7 @@ public class ClassroomphotolistActivity extends BaseActivity{
                 Intent intent = new Intent();
                 intent.setClass(ClassroomphotolistActivity.this,ClassroomphotoinfoActivity.class);
                 intent.putExtra("vo",model.getData().get(i));
+                intent.putExtra("Category",Category);
                 startActivity(intent);
 //                        ShowPop(gridView,model.getData().get(i).getImagepics());
             }
@@ -56,6 +58,12 @@ public class ClassroomphotolistActivity extends BaseActivity{
     private void loadData(){
         Intent intent = getIntent();
         Album album = (Album)intent.getSerializableExtra("vo");
+        Category=intent.getStringExtra("Category");
+        if(Category.equals("ClassroomIndexActivity")){
+            titletext.setText("班级相册");
+        }else if(Category.equals("BabayIndexActivity")){
+            titletext.setText("动感相册");
+        }
         ClassroomPhotoListRequestListener sendwordRequestListener = new ClassroomPhotoListRequestListener(this);
         ClassroomPhotoListRequest schoolRecipeRequest=new ClassroomPhotoListRequest(Photo.Model.class,this,album.getPaId());
         spiceManager.execute(schoolRecipeRequest, schoolRecipeRequest.getcachekey(), DurationInMillis.ONE_SECOND * 10,

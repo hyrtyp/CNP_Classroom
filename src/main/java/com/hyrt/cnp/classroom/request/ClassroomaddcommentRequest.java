@@ -22,7 +22,7 @@ public class ClassroomaddcommentRequest extends BaseRequest{
     }
     @Override
     public Base run() {
-        return schoolListService.addCommentData(getRestTemplate(),comment);
+        return schoolListService.addCommentData(comment);
     }
 
 

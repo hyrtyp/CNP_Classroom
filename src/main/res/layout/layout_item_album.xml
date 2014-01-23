@@ -8,9 +8,9 @@
     android:background="#ffffff">
     <ImageView
         android:id="@+id/item_album_image"
-        android:layout_width="@dimen/cnp_classroom_ablum_img_height"
-        android:layout_height="@dimen/cnp_classroom_ablum_img_height"
-        android:layout_marginRight="@dimen/cnp_school_layout_margin"
+        android:layout_width="@dimen/imageview_small"
+        android:layout_height="@dimen/imageview_small"
+        android:layout_marginRight="@dimen/view_margin_small"
         android:background="@drawable/image_test4"
         android:layout_gravity="center_vertical"
         />
@@ -55,5 +55,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:background="@drawable/cnp_next"
-        android:layout_marginRight="@dimen/cnp_school_layout_margin"/>
+        android:layout_marginRight="@dimen/view_margin_small"/>
 </LinearLayout>

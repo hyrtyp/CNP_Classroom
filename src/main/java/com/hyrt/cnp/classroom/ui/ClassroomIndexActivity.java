@@ -65,6 +65,7 @@ public class ClassroomIndexActivity extends BaseActivity{
     public void updateUI(ClassRoom.Model2 model2){
         renname.setText("班主任："+model2.getData().getRenname());
         rennames.setText("教师："+model2.getData().getRennames());
+        titletext.setText(model2.getData().getRoomname());
     }
 
     class  ItemClickListener implements AdapterView.OnItemClickListener {

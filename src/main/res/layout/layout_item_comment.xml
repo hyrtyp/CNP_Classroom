@@ -4,25 +4,26 @@
     android:orientation="horizontal" 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/cnp_school_layout_margin"
+    android:padding="@dimen/view_margin_small"
     android:background="#ffffff">
 
     <ImageView
         android:id="@+id/comment_photo"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        style="@style/small_FaceIv"
         android:layout_gravity="left"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:orientation="vertical"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/view_margin_small">
         <TextView
             android:id="@+id/text_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/cnp_school_text_size_min"
+            style="@style/medium_tv"
+            android:layout_margin="0dp"
             android:textColor="@color/cnp_text_color"
             android:singleLine="true"
             android:text="@string/app_name"/>
@@ -30,7 +31,8 @@
             android:id="@+id/text_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/cnp_school_text_size"
+            style="@style/small_tv"
+            android:layout_margin="0dp"
             android:textColor="@color/cnp_text_color"
             android:singleLine="true"
             android:text="@string/app_name"/>
@@ -38,7 +40,8 @@
             android:id="@+id/text_con"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/cnp_school_text_size"
+            style="@style/medium_tv"
+            android:layout_margin="0dp"
             android:textColor="@color/cnp_text_color"
             android:singleLine="true"
             android:text="@string/app_name"/>
@@ -55,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="回复"
-            android:textSize="@dimen/cnp_school_text_size_min"/>
+            style="@style/small_tv"
+            android:layout_margin="0dp"/>
     </LinearLayout>
 </LinearLayout>

@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +17,7 @@ import com.hyrt.cnp.classroom.request.ClassroomaddcommentRequest;
 import com.hyrt.cnp.classroom.request.ClassroomcommentRequest;
 import com.hyrt.cnp.classroom.requestListener.ClassroomaddcommentRequestListener;
 import com.hyrt.cnp.classroom.requestListener.ClassroomcommentRequestListener;
+import com.hyrt.cnp.classroom.view.Mylistview;
 import com.jingdong.common.frame.BaseActivity;
 import com.octo.android.robospice.persistence.DurationInMillis;
 
@@ -31,8 +30,8 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
     private TextView albumname;
     private TextView photoname;
     private EditText editcommit;
-    private Button btnset;
-    private ListView listView;
+    private TextView btnset;
+    private Mylistview listView;
     private Photo photo;
     private ClassRoomAdapter classRoomAdapter;
     @Override
@@ -49,8 +48,8 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
         albumname=(TextView)findViewById(R.id.text_albumname);
         photoname=(TextView)findViewById(R.id.text_photoname);
         editcommit=(EditText)findViewById(R.id.edit_commit);
-        btnset=(Button)findViewById(R.id.btn_set);
-        listView = (ListView)findViewById(R.id.commit_listview);
+        btnset=(TextView)findViewById(R.id.btn_set);
+        listView = (Mylistview)findViewById(R.id.commit_listview);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -74,6 +73,12 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
         Intent intent = getIntent();
         photo=(Photo)intent.getSerializableExtra("vo");
         photoname.setText("照片名称："+photo.getTitle());
+        String Category=intent.getStringExtra("Category");
+        if(Category.equals("ClassroomIndexActivity")){
+            titletext.setText("班级相册");
+        }else if(Category.equals("BabayIndexActivity")){
+            titletext.setText("动感相册");
+        }
         showDetailImage(photo.getImagepics(),imgphoto,false);
     }
 
@@ -97,6 +102,7 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
     }
     private void addcomment(){
         Comment comment=new Comment();
+        comment.set_id(photo.getUserID()+"");
         comment.setInfoID(photo.getPhotoID());
         comment.setInfoTitle(photo.getTitle());
         comment.setInfoUserId(photo.getUserID());

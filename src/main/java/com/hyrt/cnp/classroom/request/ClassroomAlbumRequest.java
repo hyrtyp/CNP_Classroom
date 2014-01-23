@@ -14,14 +14,25 @@ public class ClassroomAlbumRequest extends BaseRequest{
 
     @Inject
     private AlbumService schoolListService;
-
-
-    public ClassroomAlbumRequest(Class clazz, Context context) {
+    private String Category;
+    private String uid;
+    public ClassroomAlbumRequest(Class clazz, Context context,String Category) {
         super(clazz, context);
+        this.Category=Category;
+    }
+    public ClassroomAlbumRequest(Class clazz, Context context,String Category,String uid) {
+        super(clazz, context);
+        this.Category=Category;
+        this.uid=uid;
     }
     @Override
     public Base run() {
-        return schoolListService.getAlbumData(getRestTemplate());
+        if(Category.equals("BabayIndexActivity")){
+            return schoolListService.getBabayAlbumData(getRestTemplate(),uid);
+        }else{
+            return schoolListService.getAlbumData(getRestTemplate());
+        }
+
     }
 
 
@@ -31,6 +42,6 @@ public class ClassroomAlbumRequest extends BaseRequest{
     }
 
     public String getcachekey(){
-        return "classroomalbum";
+        return "classroomalbum"+uid;
     }
 }

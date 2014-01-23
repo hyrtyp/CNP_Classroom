@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.hyrt.cnp.account.model.Album;
+import com.hyrt.cnp.account.model.ClassRoomBabay;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.ClassRoomAdapter;
 import com.hyrt.cnp.classroom.request.ClassroomAlbumRequest;
@@ -24,7 +25,7 @@ public class ClassroomAlbumActivity extends BaseActivity{
     private ClassRoomAdapter classRoomAdapter;
     private String Category;
     private Album.Model model;
-
+    private ClassRoomBabay classRoomBabay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +35,13 @@ public class ClassroomAlbumActivity extends BaseActivity{
         Category=intent.getStringExtra("Category");
         if(Category.equals("ClassroomIndexActivity")){
             titletext.setText("班级相册");
+            loadData();
         }else if(Category.equals("BabayIndexActivity")){
             titletext.setText("动感相册");
+            classRoomBabay=(ClassRoomBabay)intent.getSerializableExtra("vo");
+            loadDatababayindex();
         }
-        loadData();
+
     }
 
 
@@ -58,6 +62,7 @@ public class ClassroomAlbumActivity extends BaseActivity{
                 Intent intent = new Intent();
                 intent.setClass(ClassroomAlbumActivity.this,ClassroomphotolistActivity.class);
                 intent.putExtra("vo",model.getData().get(i));
+                intent.putExtra("Category",Category);
                 startActivity(intent);
             }
         });
@@ -65,7 +70,13 @@ public class ClassroomAlbumActivity extends BaseActivity{
 
     private void loadData(){
         ClassroomAlbumRequestListener sendwordRequestListener = new ClassroomAlbumRequestListener(this);
-        ClassroomAlbumRequest schoolRecipeRequest=new ClassroomAlbumRequest(Album.Model.class,this);
+        ClassroomAlbumRequest schoolRecipeRequest=new ClassroomAlbumRequest(Album.Model.class,this,Category);
+        spiceManager.execute(schoolRecipeRequest, schoolRecipeRequest.getcachekey(), DurationInMillis.ONE_SECOND * 10,
+                sendwordRequestListener.start());
+    }
+    private void loadDatababayindex(){
+        ClassroomAlbumRequestListener sendwordRequestListener = new ClassroomAlbumRequestListener(this);
+        ClassroomAlbumRequest schoolRecipeRequest=new ClassroomAlbumRequest(Album.Model.class,this,Category,classRoomBabay.getUser_id()+"");
         spiceManager.execute(schoolRecipeRequest, schoolRecipeRequest.getcachekey(), DurationInMillis.ONE_SECOND * 10,
                 sendwordRequestListener.start());
     }
