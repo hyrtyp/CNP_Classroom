@@ -32,6 +32,6 @@ public class ClassroomRecipeInfoRequest extends BaseRequest{
     }
 
     public String getcachekey(){
-        return "classroomrecepeinfo";
+        return "classroomrecepeinfo"+time;
     }
 }

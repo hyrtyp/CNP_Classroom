@@ -41,7 +41,7 @@ public class ClassroomBabayActivity extends BaseActivity{
     public void updateUI(ClassRoomBabay.Model model){
         this.model=model;
         String[] resKeys=new String[]{"getLogopath","getRenname"};
-        int[] reses=new int[]{R.id.gridview_image,R.id.item_album_title};
+        int[] reses=new int[]{R.id.gridview_image,R.id.gridview_name};
         classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image3,resKeys,reses);
         gridView.setAdapter(classRoomAdapter);
     }

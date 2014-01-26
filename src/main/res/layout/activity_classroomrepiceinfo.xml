@@ -41,7 +41,6 @@
             android:padding="@dimen/view_margin_smallest"
             android:layout_margin="0dp"
             android:textColor="#ffffff"
-            android:textSize="@dimen/cnp_school_text_size_min"
             android:background="@color/classroomindex_teacher"
            />
     </LinearLayout>
@@ -49,14 +48,17 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="@color/cnp_line_color"/>
+        android:background="@color/cnp_line_color"
+        android:layout_marginLeft="@dimen/view_margin_small"
+        android:layout_marginRight="@dimen/view_margin_small"
+        android:layout_marginTop="@dimen/view_margin_small"/>
 
         <ListView
             android:id="@+id/recipeinfo_listview"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:dividerHeight="1px"
-            style="@style/cnp_school_layout"
-            android:layout_marginTop="0dp"
+            android:layout_marginLeft="@dimen/view_margin_small"
+            android:layout_marginRight="@dimen/view_margin_small"
             />
 </LinearLayout>
