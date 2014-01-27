@@ -35,7 +35,7 @@ public class ClassroomphotolistActivity extends BaseActivity{
     public void updateUI(Photo.Model model){
         this.model=model;
         String[] resKeys=new String[]{"getImagethpath","getTitle"};
-        int[] reses=new int[]{R.id.gridview_image,R.id.item_album_title};
+        int[] reses=new int[]{R.id.gridview_image,R.id.gridview_name};
         classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image1,resKeys,reses);
         gridView.setAdapter(classRoomAdapter);
 

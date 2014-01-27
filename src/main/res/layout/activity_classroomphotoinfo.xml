@@ -22,7 +22,8 @@
                 android:id="@+id/img_photo"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/imageview_biggest"
-                android:background="@drawable/shape_sendword_line" />
+                android:background="@drawable/shape_sendword_line"
+                android:src="@drawable/spinner_inner"/>
 
             <TextView
                 android:id="@+id/text_albumname"
@@ -31,7 +32,7 @@
                 style="@style/medium_tv"
                 android:layout_marginLeft="0dp"
                 android:textColor="@color/cnp_text_color"
-                android:text="专辑名称：班级专辑" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/text_photoname"
@@ -40,7 +41,7 @@
                 style="@style/medium_tv"
                 android:layout_marginLeft="0dp"
                 android:textColor="@color/cnp_text_color"
-                android:text="照片名称：发奖状" />
+                android:text="" />
 
             <TextView
                 android:layout_width="match_parent"

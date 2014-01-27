@@ -11,7 +11,7 @@
         android:layout_width="@dimen/imageview_small"
         android:layout_height="@dimen/imageview_small"
         android:layout_marginRight="@dimen/view_margin_small"
-        android:background="@drawable/image_test4"
+        android:background="@drawable/spinner_inner"
         android:layout_gravity="center_vertical"
         />
     <LinearLayout
