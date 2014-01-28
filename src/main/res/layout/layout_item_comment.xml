@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/comment_photo"
-        style="@style/small_FaceIv"
+        style="@style/FaceIv"
         android:layout_gravity="left"/>
     <LinearLayout
         android:layout_width="wrap_content"
