@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.hyrt.cnp.account.model.ClassRoom;
+import com.hyrt.cnp.account.utils.FaceUtils;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.ClassroomIndexAdapter;
 import com.hyrt.cnp.classroom.request.ClassroomInfoRequest;
@@ -29,6 +31,8 @@ public class ClassroomIndexActivity extends BaseActivity{
     private int[] bg;
     private Intent intent;
     private TextView renname,rennames;
+    private ImageView classroomimage;
+    private TextView classroominfo;
     @Inject
     @Named("schoolNoticeActivity")
     private Class schoolNoticeActivity;
@@ -43,6 +47,8 @@ public class ClassroomIndexActivity extends BaseActivity{
     }
 
     private void initView(){
+        classroomimage=(ImageView)findViewById(R.id.classroomimage);
+        classroominfo=(TextView)findViewById(R.id.classroomintro);
         renname=(TextView)findViewById(R.id.text_renname);
         rennames=(TextView)findViewById(R.id.text_rennames);
         imageResId = new int[] { R.drawable.classroom_notice, R.drawable.classroom_recipe,
@@ -66,6 +72,8 @@ public class ClassroomIndexActivity extends BaseActivity{
         renname.setText("班主任："+model2.getData().getRenname());
         rennames.setText("教师："+model2.getData().getRennames());
         titletext.setText(model2.getData().getRoomname());
+        showDetailImage(FaceUtils.getClassRoomImage(model2.getData().getClassroomID(),FaceUtils.FACE_BIG),classroomimage,false);
+        classroominfo.setText(model2.getData().getSignature());
     }
 
     class  ItemClickListener implements AdapterView.OnItemClickListener {

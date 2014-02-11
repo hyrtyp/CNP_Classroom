@@ -48,7 +48,7 @@ public class ClassroomAlbumActivity extends BaseActivity{
 
     public void updateUI(Album.Model model){
         this.model=model;
-        String[] resKeys=new String[]{"getImagepath","getAlbumName","getAlbumDesc","getPosttime"};
+        String[] resKeys=new String[]{"getImagepath","getAlbumName","getAlbumDesc","getPosttime2"};
         int[] reses=new int[]{R.id.item_album_image,R.id.item_album_title,R.id.item_album_con,R.id.item_album_time};
         classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_album,resKeys,reses);
         listview.setAdapter(classRoomAdapter);

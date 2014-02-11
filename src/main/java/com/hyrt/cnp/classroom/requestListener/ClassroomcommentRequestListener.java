@@ -33,7 +33,7 @@ public class ClassroomcommentRequestListener extends BaseRequestListener{
             Comment.Model result= (Comment.Model)data;
             activity.updateUI(result);
         }else{
-            showMessage(R.string.nodata_title,R.string.nodata_content);
+            showMessage(R.string.nodata_title,R.string.nodata_commentfial);
         }
 
     }

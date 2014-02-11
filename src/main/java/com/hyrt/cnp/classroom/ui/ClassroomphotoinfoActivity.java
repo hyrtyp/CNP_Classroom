@@ -69,6 +69,7 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
         });
     }
 
+    //TODO 专辑名称是什么
     private void initData(){
         Intent intent = getIntent();
         photo=(Photo)intent.getSerializableExtra("vo");
@@ -76,8 +77,10 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
         String Category=intent.getStringExtra("Category");
         if(Category.equals("ClassroomIndexActivity")){
             titletext.setText("班级相册");
+            albumname.setText("专辑名称：班级专辑");
         }else if(Category.equals("BabayIndexActivity")){
             titletext.setText("动感相册");
+            albumname.setText("专辑名称：个人专辑");
         }
         showDetailImage(photo.getImagepics(),imgphoto,false);
     }
@@ -91,7 +94,7 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
     }
 
     public void updateUI(Comment.Model model){
-        String[] resKeys=new String[]{"getphotoImage","getUsername","getRedate","getContent"};
+        String[] resKeys=new String[]{"getphotoImage","getUsername","getRedate2","getContent"};
         int[] reses=new int[]{R.id.comment_photo,R.id.text_name,R.id.text_time,R.id.text_con};
         classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_comment,resKeys,reses);
         listView.setAdapter(classRoomAdapter);
@@ -99,6 +102,7 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
 
     public void ShowSuccess(){
         Toast.makeText(ClassroomphotoinfoActivity.this,"添加评论成功",Toast.LENGTH_SHORT).show();
+        editcommit.setText("");
     }
     private void addcomment(){
         Comment comment=new Comment();
@@ -110,7 +114,7 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
         comment.setInfoClassroomId(photo.getClassroomID());
         comment.setSiteid("15");
         comment.setUrl(photo.getImagepics());
-        comment.setLstatus("N");
+        comment.setLstatus("Y");
         comment.setContent(editcommit.getText().toString());
         comment.setReply("0");
         comment.setRecontent("");

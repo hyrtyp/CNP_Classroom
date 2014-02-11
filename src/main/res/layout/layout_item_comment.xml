@@ -26,7 +26,7 @@
             android:layout_margin="0dp"
             android:textColor="@color/cnp_text_color"
             android:singleLine="true"
-            android:text="@string/app_name"/>
+            android:text=""/>
         <TextView
             android:id="@+id/text_time"
             android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
             android:layout_margin="0dp"
             android:textColor="@color/cnp_text_color"
             android:singleLine="true"
-            android:text="@string/app_name"/>
+            android:text=""/>
         <TextView
             android:id="@+id/text_con"
             android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
             android:layout_margin="0dp"
             android:textColor="@color/cnp_text_color"
             android:singleLine="true"
-            android:text="@string/app_name"/>
+            android:text=""/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
