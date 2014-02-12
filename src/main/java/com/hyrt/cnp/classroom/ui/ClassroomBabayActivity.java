@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -26,6 +27,7 @@ public class ClassroomBabayActivity extends BaseActivity{
     private GridView gridView;
     private ClassRoomAdapter classRoomAdapter;
     private ClassRoomBabay.Model model;
+    private TextView bottom_num;
 
     @Inject
     @Named("babayIndexActivity")
@@ -39,13 +41,20 @@ public class ClassroomBabayActivity extends BaseActivity{
         loadData();
     }
     public void updateUI(ClassRoomBabay.Model model){
-        this.model=model;
-        String[] resKeys=new String[]{"getLogopath","getRenname"};
-        int[] reses=new int[]{R.id.gridview_image,R.id.gridview_name};
-        classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image3,resKeys,reses);
-        gridView.setAdapter(classRoomAdapter);
+        if(model==null){
+            bottom_num.setText("暂无信息");
+        }else {
+            this.model=model;
+            String[] resKeys=new String[]{"getLogopath","getRenname"};
+            int[] reses=new int[]{R.id.gridview_image,R.id.gridview_name};
+            classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image3,resKeys,reses);
+            gridView.setAdapter(classRoomAdapter);
+            bottom_num.setText("共 "+model.getData().size()+" 人");
+        }
+
     }
     private void initView(){
+        bottom_num=(TextView)findViewById(R.id.bottom_num);
         gridView =(GridView)findViewById(R.id.cnp_gridview);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

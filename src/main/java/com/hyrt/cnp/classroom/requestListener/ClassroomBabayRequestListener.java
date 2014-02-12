@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import com.hyrt.cnp.account.model.ClassRoomBabay;
 import com.hyrt.cnp.account.requestListener.BaseRequestListener;
-import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.ui.ClassroomBabayActivity;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 
@@ -21,7 +20,9 @@ public class ClassroomBabayRequestListener extends BaseRequestListener{
 
     @Override
     public void onRequestFailure(SpiceException e) {
-        showMessage(R.string.nodata_title,R.string.nodata_content);
+//        showMessage(R.string.nodata_title,R.string.nodata_content);
+        ClassroomBabayActivity activity = (ClassroomBabayActivity)context.get();
+        activity.updateUI(null);
         super.onRequestFailure(e);
     }
 
@@ -33,7 +34,9 @@ public class ClassroomBabayRequestListener extends BaseRequestListener{
             ClassRoomBabay.Model result= (ClassRoomBabay.Model)data;
             activity.updateUI(result);
         }else{
-            showMessage(R.string.nodata_title,R.string.nodata_content);
+            ClassroomBabayActivity activity = (ClassroomBabayActivity)context.get();
+            activity.updateUI(null);
+//            showMessage(R.string.nodata_title,R.string.nodata_content);
         }
 
     }

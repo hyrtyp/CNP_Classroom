@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import com.hyrt.cnp.account.model.Photo;
 import com.hyrt.cnp.account.requestListener.BaseRequestListener;
-import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.ui.ClassroomphotolistActivity;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 
@@ -21,7 +20,9 @@ public class ClassroomPhotoListRequestListener extends BaseRequestListener {
 
     @Override
     public void onRequestFailure(SpiceException e) {
-        showMessage(R.string.nodata_title,R.string.nodata_content);
+//        showMessage(R.string.nodata_title,R.string.nodata_content);
+        ClassroomphotolistActivity activity = (ClassroomphotolistActivity)context.get();
+        activity.updateUI(null);
         super.onRequestFailure(e);
     }
 
@@ -33,7 +34,9 @@ public class ClassroomPhotoListRequestListener extends BaseRequestListener {
             Photo.Model result= (Photo.Model)data;
             activity.updateUI(result);
         }else{
-            showMessage(R.string.nodata_title,R.string.nodata_content);
+            ClassroomphotolistActivity activity = (ClassroomphotolistActivity)context.get();
+            activity.updateUI(null);
+//            showMessage(R.string.nodata_title,R.string.nodata_content);
         }
 
     }

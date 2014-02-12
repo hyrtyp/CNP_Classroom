@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.hyrt.cnp.account.model.Album;
 import com.hyrt.cnp.account.model.Photo;
@@ -24,6 +25,7 @@ public class ClassroomphotolistActivity extends BaseActivity{
     private ClassRoomAdapter classRoomAdapter;
     private Photo.Model model;
     private String  Category;
+    private TextView bottom_num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +34,23 @@ public class ClassroomphotolistActivity extends BaseActivity{
         loadData();
     }
 
+    /**
+     * 更新ui界面
+     * */
     public void updateUI(Photo.Model model){
-        this.model=model;
-        String[] resKeys=new String[]{"getImagethpath","getTitle"};
-        int[] reses=new int[]{R.id.gridview_image,R.id.gridview_name};
-        classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image1,resKeys,reses);
-        gridView.setAdapter(classRoomAdapter);
-
+        if(model==null){
+            bottom_num.setText("暂无信息");
+        }else{
+            this.model=model;
+            String[] resKeys=new String[]{"getImagethpath","getTitle"};
+            int[] reses=new int[]{R.id.gridview_image,R.id.gridview_name};
+            classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image1,resKeys,reses);
+            gridView.setAdapter(classRoomAdapter);
+            bottom_num.setText("共 "+model.getData().size()+" 张");
+        }
     }
     private void initView(){
+        bottom_num=(TextView)findViewById(R.id.bottom_num);
         gridView =(GridView)findViewById(R.id.cnp_gridview);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
