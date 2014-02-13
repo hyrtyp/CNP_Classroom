@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.hyrt.cnp.account.model.Album;
 import com.hyrt.cnp.account.model.ClassRoomBabay;
@@ -44,14 +46,24 @@ public class ClassroomAlbumActivity extends BaseActivity{
 
     }
 
-
+    /**
+     * 更新ui界面
+     * */
 
     public void updateUI(Album.Model model){
-        this.model=model;
-        String[] resKeys=new String[]{"getImagepath","getAlbumName","getAlbumDesc","getPosttime2"};
-        int[] reses=new int[]{R.id.item_album_image,R.id.item_album_title,R.id.item_album_con,R.id.item_album_time};
-        classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_album,resKeys,reses);
-        listview.setAdapter(classRoomAdapter);
+        if (model==null){
+            LinearLayout linearLayout =(LinearLayout)findViewById(R.id.layout_bottom);
+            linearLayout.setVisibility(View.VISIBLE);
+            TextView bottom_num = (TextView)findViewById(R.id.bottom_num);
+            bottom_num.setText("暂无信息");
+        }else{
+            this.model=model;
+            String[] resKeys=new String[]{"getImagepath","getAlbumName","getAlbumDesc","getPosttime2"};
+            int[] reses=new int[]{R.id.item_album_image,R.id.item_album_title,R.id.item_album_con,R.id.item_album_time};
+            classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_album,resKeys,reses);
+            listview.setAdapter(classRoomAdapter);
+        }
+
     }
 
     private void initView(){

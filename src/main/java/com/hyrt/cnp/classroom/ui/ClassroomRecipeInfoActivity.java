@@ -2,6 +2,7 @@ package com.hyrt.cnp.classroom.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -75,6 +76,10 @@ public class ClassroomRecipeInfoActivity extends BaseActivity {
                 foot.clear();
                 repiceInfoAdapter.notifyDataSetChanged();
             }
+            LinearLayout linearLayout =(LinearLayout)findViewById(R.id.layout_bottom);
+            linearLayout.setVisibility(View.VISIBLE);
+            TextView bottom_num = (TextView)findViewById(R.id.bottom_num);
+            bottom_num.setText("暂无信息");
         }
 
 

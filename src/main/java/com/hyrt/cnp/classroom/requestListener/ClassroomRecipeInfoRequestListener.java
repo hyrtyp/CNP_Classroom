@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import com.hyrt.cnp.account.model.RecipeInfo;
 import com.hyrt.cnp.account.requestListener.BaseRequestListener;
-import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.ui.ClassroomRecipeInfoActivity;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 
@@ -21,8 +20,10 @@ public class ClassroomRecipeInfoRequestListener extends BaseRequestListener{
 
     @Override
     public void onRequestFailure(SpiceException e) {
-        showMessage(R.string.nodata_title,R.string.nodata_content);
+//        showMessage(R.string.nodata_title,R.string.nodata_content);
         super.onRequestFailure(e);
+        ClassroomRecipeInfoActivity activity = (ClassroomRecipeInfoActivity)context.get();
+        activity.updateUI(null);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class ClassroomRecipeInfoRequestListener extends BaseRequestListener{
             RecipeInfo.Model result= (RecipeInfo.Model)data;
             activity.updateUI(result);
         }else{
-            showMessage(R.string.nodata_title,R.string.nodata_content);
+//            showMessage(R.string.nodata_title,R.string.nodata_content);
             ClassroomRecipeInfoActivity activity = (ClassroomRecipeInfoActivity)context.get();
             activity.updateUI(null);
         }

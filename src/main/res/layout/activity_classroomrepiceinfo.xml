@@ -45,20 +45,42 @@
            />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/cnp_line_color"
-        android:layout_marginLeft="@dimen/view_margin_small"
-        android:layout_marginRight="@dimen/view_margin_small"
-        android:layout_marginTop="@dimen/view_margin_small"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/recipeinfo_listview"
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/layout_bottom"
+            android:layout_alignParentBottom="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:dividerHeight="1px"
-            android:layout_marginLeft="@dimen/view_margin_small"
-            android:layout_marginRight="@dimen/view_margin_small"
-            />
+            android:layout_marginBottom="@dimen/view_bottom_margin">
+            <include layout="@layout/layout_bottom_num"></include>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_above="@id/layout_bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/cnp_line_color"
+                android:layout_marginLeft="@dimen/view_margin_small"
+                android:layout_marginRight="@dimen/view_margin_small"
+                android:layout_marginTop="@dimen/view_margin_small"/>
+
+            <ListView
+                android:id="@+id/recipeinfo_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:dividerHeight="1px"
+                android:layout_marginLeft="@dimen/view_margin_small"
+                android:layout_marginRight="@dimen/view_margin_small"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
 </LinearLayout>
