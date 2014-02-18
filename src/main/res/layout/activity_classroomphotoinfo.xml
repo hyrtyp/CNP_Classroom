@@ -7,7 +7,7 @@
     android:background="@drawable/cnp_bg"
     android:focusable="true"
     android:focusableInTouchMode="true">
-    <ScrollView
+    <com.hyrt.cnp.view.MtScrollView
         android:layout_width="fill_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -91,7 +91,7 @@
                 android:layout_marginBottom="@dimen/cnp_school_layout_margin"
                 android:background="@drawable/cnp_bg" />
         </LinearLayout>
-    </ScrollView>
+    </com.hyrt.cnp.view.MtScrollView>
 
 
 

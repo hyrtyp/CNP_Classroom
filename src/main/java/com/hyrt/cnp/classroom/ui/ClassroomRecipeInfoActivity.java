@@ -22,7 +22,7 @@ import java.util.Date;
 
 /**
  * Created by GYH on 14-1-16.
- * 班级专辑
+ * 今日食谱
  */
 public class ClassroomRecipeInfoActivity extends BaseActivity {
 
@@ -30,7 +30,7 @@ public class ClassroomRecipeInfoActivity extends BaseActivity {
     private ListView listview;
     private RepiceInfoAdapter repiceInfoAdapter;
     private String[] footstime = new String[]{"早餐", "早餐配料", "加餐", "午餐", "午餐配料", "午点", "晚餐", "晚餐配料", "日营养量", "负责人"};
-    private ArrayList<String> foot;
+    private ArrayList<String> foot = new ArrayList<String>();;
     private TextView foottimetext;
 
     @Override
@@ -42,7 +42,6 @@ public class ClassroomRecipeInfoActivity extends BaseActivity {
     }
 
     public void updateUI(RecipeInfo.Model models) {
-        foot = new ArrayList<String>();
         if (models != null) {
             RecipeInfo model = models.getData();
             if (repiceInfoAdapter == null) {
@@ -73,7 +72,7 @@ public class ClassroomRecipeInfoActivity extends BaseActivity {
             }
         } else {
             if (repiceInfoAdapter != null) {
-                foot.clear();
+                foot.removeAll(foot);
                 repiceInfoAdapter.notifyDataSetChanged();
             }
             LinearLayout linearLayout =(LinearLayout)findViewById(R.id.layout_bottom);
