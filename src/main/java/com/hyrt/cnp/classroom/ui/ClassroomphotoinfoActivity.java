@@ -89,7 +89,7 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
         ClassroomcommentRequestListener sendwordRequestListener = new ClassroomcommentRequestListener(this);
         ClassroomcommentRequest schoolRecipeRequest=
                 new ClassroomcommentRequest(Comment.Model.class,this,photo.getPhotoID()+"","15");
-        spiceManager.execute(schoolRecipeRequest, schoolRecipeRequest.getcachekey(), DurationInMillis.ONE_SECOND * 10,
+        spiceManager.execute(schoolRecipeRequest, schoolRecipeRequest.getcachekey(), 1000,
                 sendwordRequestListener.start());
     }
 
@@ -103,6 +103,7 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
     public void ShowSuccess(){
         Toast.makeText(ClassroomphotoinfoActivity.this,"添加评论成功",Toast.LENGTH_SHORT).show();
         editcommit.setText("");
+        LoadData();//刷新
     }
     private void addcomment(){
         Comment comment=new Comment();

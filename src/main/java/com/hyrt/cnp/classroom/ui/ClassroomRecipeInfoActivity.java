@@ -43,6 +43,7 @@ public class ClassroomRecipeInfoActivity extends BaseActivity {
 
     public void updateUI(RecipeInfo.Model models) {
         if (models != null) {
+            foot.removeAll(foot);
             RecipeInfo model = models.getData();
             if (repiceInfoAdapter == null) {
                 foot.add(model.getBreakfast());
@@ -70,6 +71,8 @@ public class ClassroomRecipeInfoActivity extends BaseActivity {
                 foot.add(model.getFooder());
                 repiceInfoAdapter.notifyDataSetChanged();
             }
+            LinearLayout linearLayout =(LinearLayout)findViewById(R.id.layout_bottom);
+            linearLayout.setVisibility(View.GONE);
         } else {
             if (repiceInfoAdapter != null) {
                 foot.removeAll(foot);

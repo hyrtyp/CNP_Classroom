@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:padding="@dimen/view_margin_small"
-            android:background="#50ffffff"
+            android:background="#a0ffffff"
             android:textColor="@color/cnp_text_color"
             android:layout_alignParentBottom="true"
             android:singleLine="true"/>
