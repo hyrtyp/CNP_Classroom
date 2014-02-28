@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hyrt.cnp.account.model.Album;
-import com.hyrt.cnp.account.model.ClassRoomBabay;
+import com.hyrt.cnp.account.model.BabyInfo;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.ClassRoomAdapter;
 import com.hyrt.cnp.classroom.request.ClassroomAlbumRequest;
@@ -27,7 +27,7 @@ public class ClassroomAlbumActivity extends BaseActivity{
     private ClassRoomAdapter classRoomAdapter;
     private String Category;
     private Album.Model model;
-    private ClassRoomBabay classRoomBabay;
+    private BabyInfo classRoomBabay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class ClassroomAlbumActivity extends BaseActivity{
             loadData();
         }else if(Category.equals("BabayIndexActivity")){
             titletext.setText("动感相册");
-            classRoomBabay=(ClassRoomBabay)intent.getSerializableExtra("vo");
+            classRoomBabay=(BabyInfo)intent.getSerializableExtra("vo");
             loadDatababayindex();
         }
 

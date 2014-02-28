@@ -9,11 +9,14 @@ import android.widget.TextView;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import com.hyrt.cnp.account.model.BabyInfo;
 import com.hyrt.cnp.account.model.ClassRoomBabay;
 import com.hyrt.cnp.account.model.Photo;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.ClassRoomAdapter;
+import com.hyrt.cnp.classroom.request.BabayInfoRequest;
 import com.hyrt.cnp.classroom.request.ClassroomBabayRequest;
+import com.hyrt.cnp.classroom.requestListener.BabayInfoRequestListener;
 import com.hyrt.cnp.classroom.requestListener.ClassroomBabayRequestListener;
 import com.jingdong.common.frame.BaseActivity;
 import com.octo.android.robospice.persistence.DurationInMillis;
@@ -59,10 +62,7 @@ public class ClassroomBabayActivity extends BaseActivity{
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent();
-                intent.setClass(ClassroomBabayActivity.this,babayIndexActivity);
-                intent.putExtra("vo",model.getData().get(i));
-                startActivity(intent);
+                LoadBabayinfoData(i);
             }
         });
     }
@@ -72,5 +72,19 @@ public class ClassroomBabayActivity extends BaseActivity{
         ClassroomBabayRequest schoolRecipeRequest=new ClassroomBabayRequest(Photo.Model.class,this);
         spiceManager.execute(schoolRecipeRequest, schoolRecipeRequest.getcachekey(), DurationInMillis.ONE_SECOND * 10,
                 sendwordRequestListener.start());
+    }
+
+    private void LoadBabayinfoData(int i){
+        BabayInfoRequestListener sendwordRequestListener = new BabayInfoRequestListener(this);
+        BabayInfoRequest schoolRecipeRequest=new BabayInfoRequest(BabyInfo.Model.class,this,model.getData().get(i).getUser_id()+"");
+        spiceManager.execute(schoolRecipeRequest, schoolRecipeRequest.getcachekey(), DurationInMillis.ONE_SECOND * 10,
+                sendwordRequestListener.start());
+    }
+
+    public void gotoBabayIndex(BabyInfo.Model babyInfomodel){
+        Intent intent = new Intent();
+        intent.setClass(ClassroomBabayActivity.this,babayIndexActivity);
+        intent.putExtra("vo",babyInfomodel.getData());
+        startActivity(intent);
     }
 }

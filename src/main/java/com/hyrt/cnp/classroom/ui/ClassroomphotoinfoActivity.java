@@ -3,6 +3,7 @@ package com.hyrt.cnp.classroom.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -94,7 +95,7 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
     }
 
     public void updateUI(Comment.Model model){
-        String[] resKeys=new String[]{"getphotoImage","getUsername","getRedate2","getContent"};
+        String[] resKeys=new String[]{"getphotoImage","getUsername","getCreatdate2","getContent"};
         int[] reses=new int[]{R.id.comment_photo,R.id.text_name,R.id.text_time,R.id.text_con};
         classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_comment,resKeys,reses);
         listView.setAdapter(classRoomAdapter);
@@ -104,15 +105,18 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
         Toast.makeText(ClassroomphotoinfoActivity.this,"添加评论成功",Toast.LENGTH_SHORT).show();
         editcommit.setText("");
         LoadData();//刷新
+        //隐藏键盘
+        ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
+                ClassroomphotoinfoActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
     private void addcomment(){
         Comment comment=new Comment();
         comment.set_id(photo.getUserID()+"");
-        comment.setInfoID(photo.getPhotoID());
+        comment.setInfoID(photo.getPhotoID()+"");
         comment.setInfoTitle(photo.getTitle());
-        comment.setInfoUserId(photo.getUserID());
-        comment.setInfoNurseryId(photo.getNurseryID());
-        comment.setInfoClassroomId(photo.getClassroomID());
+        comment.setInfoUserId(photo.getUserID()+"");
+        comment.setInfoNurseryId(photo.getNurseryID()+"");
+        comment.setInfoClassroomId(photo.getClassroomID()+"");
         comment.setSiteid("15");
         comment.setUrl(photo.getImagepics());
         comment.setLstatus("Y");
