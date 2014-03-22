@@ -3,8 +3,8 @@ package com.hyrt.cnp.classroom.request;
 import android.content.Context;
 
 import com.google.inject.Inject;
-import com.hyrt.cnp.account.model.Base;
-import com.hyrt.cnp.account.request.BaseRequest;
+import com.hyrt.cnp.base.account.model.Base;
+import com.hyrt.cnp.base.account.request.BaseRequest;
 import com.hyrt.cnp.account.service.ClassroomBabayService;
 
 /**

@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hyrt.cnp.account.model.Comment;
-import com.hyrt.cnp.account.model.Photo;
+import com.hyrt.cnp.base.account.model.Comment;
+import com.hyrt.cnp.base.account.model.Photo;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.ClassRoomAdapter;
 import com.hyrt.cnp.classroom.request.ClassroomaddcommentRequest;

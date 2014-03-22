@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import com.hyrt.cnp.account.model.ClassRoom;
-import com.hyrt.cnp.account.utils.FaceUtils;
+import com.hyrt.cnp.base.account.model.ClassRoom;
+import com.hyrt.cnp.base.account.utils.FaceUtils;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.ClassroomIndexAdapter;
 import com.hyrt.cnp.classroom.request.ClassroomInfoRequest;

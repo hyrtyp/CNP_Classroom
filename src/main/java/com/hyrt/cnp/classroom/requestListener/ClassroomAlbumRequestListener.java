@@ -2,8 +2,8 @@ package com.hyrt.cnp.classroom.requestListener;
 
 import android.app.Activity;
 
-import com.hyrt.cnp.account.model.Album;
-import com.hyrt.cnp.account.requestListener.BaseRequestListener;
+import com.hyrt.cnp.base.account.model.Album;
+import com.hyrt.cnp.base.account.requestListener.BaseRequestListener;
 import com.hyrt.cnp.classroom.ui.ClassroomAlbumActivity;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 

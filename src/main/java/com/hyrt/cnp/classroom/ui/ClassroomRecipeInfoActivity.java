@@ -6,9 +6,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hyrt.cnp.account.model.Album;
-import com.hyrt.cnp.account.model.RecipeInfo;
-import com.hyrt.cnp.account.utils.StringUtils;
+import com.hyrt.cnp.base.account.model.Album;
+import com.hyrt.cnp.base.account.model.RecipeInfo;
+import com.hyrt.cnp.base.account.utils.StringUtils;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.RepiceInfoAdapter;
 import com.hyrt.cnp.classroom.request.ClassroomRecipeInfoRequest;

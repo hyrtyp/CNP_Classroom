@@ -9,9 +9,9 @@ import android.widget.TextView;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import com.hyrt.cnp.account.model.BabyInfo;
-import com.hyrt.cnp.account.model.ClassRoomBabay;
-import com.hyrt.cnp.account.model.Photo;
+import com.hyrt.cnp.base.account.model.BabyInfo;
+import com.hyrt.cnp.base.account.model.ClassRoomBabay;
+import com.hyrt.cnp.base.account.model.Photo;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.ClassRoomAdapter;
 import com.hyrt.cnp.classroom.request.BabayInfoRequest;

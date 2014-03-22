@@ -7,8 +7,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.hyrt.cnp.account.model.Album;
-import com.hyrt.cnp.account.model.Photo;
+import com.hyrt.cnp.base.account.model.Album;
+import com.hyrt.cnp.base.account.model.Photo;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.ClassRoomAdapter;
 import com.hyrt.cnp.classroom.request.ClassroomPhotoListRequest;

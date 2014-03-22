@@ -8,8 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hyrt.cnp.account.model.Album;
-import com.hyrt.cnp.account.model.BabyInfo;
+import com.hyrt.cnp.base.account.model.Album;
+import com.hyrt.cnp.base.account.model.BabyInfo;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.ClassRoomAdapter;
 import com.hyrt.cnp.classroom.request.ClassroomAlbumRequest;
