@@ -2,9 +2,8 @@ package com.hyrt.cnp.classroom.requestListener;
 
 import android.app.Activity;
 
-import com.hyrt.cnp.account.model.Album;
-import com.hyrt.cnp.account.requestListener.BaseRequestListener;
-import com.hyrt.cnp.classroom.R;
+import com.hyrt.cnp.base.account.model.Album;
+import com.hyrt.cnp.base.account.requestListener.BaseRequestListener;
 import com.hyrt.cnp.classroom.ui.ClassroomAlbumActivity;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 
@@ -21,8 +20,10 @@ public class ClassroomAlbumRequestListener extends BaseRequestListener{
 
     @Override
     public void onRequestFailure(SpiceException e) {
-        showMessage(R.string.nodata_title,R.string.nodata_content);
+//        showMessage(R.string.nodata_title,R.string.nodata_content);
         super.onRequestFailure(e);
+        ClassroomAlbumActivity activity = (ClassroomAlbumActivity)context.get();
+        activity.updateUI(null);
     }
 
     @Override
@@ -33,7 +34,9 @@ public class ClassroomAlbumRequestListener extends BaseRequestListener{
             Album.Model result= (Album.Model)data;
             activity.updateUI(result);
         }else{
-            showMessage(R.string.nodata_title,R.string.nodata_content);
+            ClassroomAlbumActivity activity = (ClassroomAlbumActivity)context.get();
+            activity.updateUI(null);
+//            showMessage(R.string.nodata_title,R.string.nodata_content);
         }
 
     }

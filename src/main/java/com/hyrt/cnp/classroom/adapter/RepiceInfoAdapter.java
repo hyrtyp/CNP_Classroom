@@ -53,8 +53,11 @@ public class RepiceInfoAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象
         }
 
-        holder.foottime.setText(str[i]);
-        holder.footcont.setText(foot.get(i));
+        //TODO 修改数组越界
+        if(str.length!=0){
+            holder.foottime.setText(str[i]);
+            holder.footcont.setText(foot.get(i));
+        }
         return convertView;
     }
 

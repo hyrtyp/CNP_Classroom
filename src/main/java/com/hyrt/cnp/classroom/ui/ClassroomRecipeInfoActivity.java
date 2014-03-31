@@ -2,11 +2,13 @@ package com.hyrt.cnp.classroom.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hyrt.cnp.account.model.Album;
-import com.hyrt.cnp.account.model.RecipeInfo;
+import com.hyrt.cnp.base.account.model.Album;
+import com.hyrt.cnp.base.account.model.RecipeInfo;
+import com.hyrt.cnp.base.account.utils.StringUtils;
 import com.hyrt.cnp.classroom.R;
 import com.hyrt.cnp.classroom.adapter.RepiceInfoAdapter;
 import com.hyrt.cnp.classroom.request.ClassroomRecipeInfoRequest;
@@ -20,7 +22,7 @@ import java.util.Date;
 
 /**
  * Created by GYH on 14-1-16.
- * 班级专辑
+ * 今日食谱
  */
 public class ClassroomRecipeInfoActivity extends BaseActivity {
 
@@ -28,7 +30,7 @@ public class ClassroomRecipeInfoActivity extends BaseActivity {
     private ListView listview;
     private RepiceInfoAdapter repiceInfoAdapter;
     private String[] footstime = new String[]{"早餐", "早餐配料", "加餐", "午餐", "午餐配料", "午点", "晚餐", "晚餐配料", "日营养量", "负责人"};
-    private ArrayList<String> foot;
+    private ArrayList<String> foot = new ArrayList<String>();;
     private TextView foottimetext;
 
     @Override
@@ -40,8 +42,8 @@ public class ClassroomRecipeInfoActivity extends BaseActivity {
     }
 
     public void updateUI(RecipeInfo.Model models) {
-        foot = new ArrayList<String>();
         if (models != null) {
+            foot.removeAll(foot);
             RecipeInfo model = models.getData();
             if (repiceInfoAdapter == null) {
                 foot.add(model.getBreakfast());
@@ -69,11 +71,17 @@ public class ClassroomRecipeInfoActivity extends BaseActivity {
                 foot.add(model.getFooder());
                 repiceInfoAdapter.notifyDataSetChanged();
             }
+            LinearLayout linearLayout =(LinearLayout)findViewById(R.id.layout_bottom);
+            linearLayout.setVisibility(View.GONE);
         } else {
             if (repiceInfoAdapter != null) {
-                foot.clear();
+                foot.removeAll(foot);
                 repiceInfoAdapter.notifyDataSetChanged();
             }
+            LinearLayout linearLayout =(LinearLayout)findViewById(R.id.layout_bottom);
+            linearLayout.setVisibility(View.VISIBLE);
+            TextView bottom_num = (TextView)findViewById(R.id.bottom_num);
+            bottom_num.setText("暂无信息");
         }
 
 
@@ -101,10 +109,43 @@ public class ClassroomRecipeInfoActivity extends BaseActivity {
     }
 
     private void loadData(String time) {
-        foottimetext.setText(time);
+        try {
+            foottimetext.setText(time+" "+getweeks(StringUtils.dayForWeek(time)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ClassroomRecipeInfoRequestListener sendwordRequestListener = new ClassroomRecipeInfoRequestListener(this);
         ClassroomRecipeInfoRequest schoolRecipeRequest = new ClassroomRecipeInfoRequest(Album.Model.class, this, time);
         spiceManager.execute(schoolRecipeRequest, schoolRecipeRequest.getcachekey(), DurationInMillis.ONE_SECOND * 10,
                 sendwordRequestListener.start());
+    }
+
+
+    private String getweeks(int i){
+        String str=null;
+        switch (i){
+            case 1:
+                str="星期一";
+                break;
+            case 2:
+                str="星期二";
+                break;
+            case 3:
+                str="星期三";
+                break;
+            case 4:
+                str="星期四";
+                break;
+            case 5:
+                str="星期五";
+                break;
+            case 6:
+                str="星期六";
+                break;
+            case 7:
+                str="星期日";
+                break;
+        }
+        return str;
     }
 }

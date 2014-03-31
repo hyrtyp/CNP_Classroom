@@ -5,23 +5,23 @@ import android.content.Context;
 import com.google.inject.Inject;
 import com.hyrt.cnp.base.account.model.Base;
 import com.hyrt.cnp.base.account.request.BaseRequest;
-import com.hyrt.cnp.base.account.service.ClassroomBabayService;
+import com.hyrt.cnp.base.account.service.BabayinfoService;
 
 /**
- * Created by GYH on 14-1-16.
+ * Created by GYH on 14-1-23.
  */
-public class ClassroomBabayRequest extends BaseRequest{
+public class BabayInfoRequest extends BaseRequest {
 
     @Inject
-    private ClassroomBabayService schoolListService;
-
-
-    public ClassroomBabayRequest(Class clazz, Context context) {
+    private BabayinfoService schoolListService;
+    private String uid;
+    public BabayInfoRequest(Class clazz, Context context, String uid) {
         super(clazz, context);
+        this.uid=uid;
     }
     @Override
     public Base run() {
-        return schoolListService.getclassroombabayData(getRestTemplate());
+            return schoolListService.getBabayinfoData(getRestTemplate(),uid);
     }
 
 
@@ -31,6 +31,6 @@ public class ClassroomBabayRequest extends BaseRequest{
     }
 
     public String getcachekey(){
-        return "classroombabay";
+        return "Babayinfo"+uid;
     }
 }

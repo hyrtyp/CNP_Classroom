@@ -5,24 +5,23 @@ import android.content.Context;
 import com.google.inject.Inject;
 import com.hyrt.cnp.base.account.model.Base;
 import com.hyrt.cnp.base.account.request.BaseRequest;
-import com.hyrt.cnp.base.account.service.RecipeInfoService;
+import com.hyrt.cnp.account.service.ClassRoomService;
 
 /**
  * Created by GYH on 14-1-16.
  */
-public class ClassroomRecipeInfoRequest extends BaseRequest{
+public class ClassroomInfoRequest extends BaseRequest{
 
     @Inject
-    private RecipeInfoService schoolListService;
+    private ClassRoomService schoolListService;
 
-    private String time;
-    public ClassroomRecipeInfoRequest(Class clazz, Context context,String time) {
+
+    public ClassroomInfoRequest(Class clazz, Context context) {
         super(clazz, context);
-        this.time=time;
     }
     @Override
     public Base run() {
-        return schoolListService.getRecipeDayData(getRestTemplate(),time);
+        return schoolListService.getClassRoomInfoData1(getRestTemplate());
     }
 
 
@@ -32,6 +31,6 @@ public class ClassroomRecipeInfoRequest extends BaseRequest{
     }
 
     public String getcachekey(){
-        return "classroomrecepeinfo"+time;
+        return "classroomInfo1";
     }
 }
