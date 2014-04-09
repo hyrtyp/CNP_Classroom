@@ -11,6 +11,9 @@ import com.octo.android.robospice.persistence.exception.SpiceException;
  * Created by GYH on 14-1-16.
  */
 public class ClassroomBabayRequestListener extends BaseRequestListener{
+
+    private requestListener mListener;
+
     /**
      * @param context
      */
@@ -21,8 +24,13 @@ public class ClassroomBabayRequestListener extends BaseRequestListener{
     @Override
     public void onRequestFailure(SpiceException e) {
 //        showMessage(R.string.nodata_title,R.string.nodata_content);
-        ClassroomBabayActivity activity = (ClassroomBabayActivity)context.get();
-        activity.updateUI(null);
+        if(mListener == null){
+            ClassroomBabayActivity activity = (ClassroomBabayActivity)context.get();
+            activity.updateUI(null);
+        }else{
+            mListener.onRequestFailure(e);
+        }
+
         super.onRequestFailure(e);
     }
 
@@ -30,15 +38,34 @@ public class ClassroomBabayRequestListener extends BaseRequestListener{
     public void onRequestSuccess(Object data) {
         super.onRequestSuccess(data);
         if(data!=null){
-            ClassroomBabayActivity activity = (ClassroomBabayActivity)context.get();
             ClassRoomBabay.Model result= (ClassRoomBabay.Model)data;
-            activity.updateUI(result);
+            if(mListener == null){
+                ClassroomBabayActivity activity = (ClassroomBabayActivity)context.get();
+
+                activity.updateUI(result);
+            }else{
+                mListener.onRequestSuccess(result);
+            }
         }else{
-            ClassroomBabayActivity activity = (ClassroomBabayActivity)context.get();
-            activity.updateUI(null);
+            if(mListener == null){
+                ClassroomBabayActivity activity = (ClassroomBabayActivity)context.get();
+                activity.updateUI(null);
+            }else{
+                mListener.onRequestSuccess(null);
+            }
+
 //            showMessage(R.string.nodata_title,R.string.nodata_content);
         }
 
+    }
+
+    public void setListener(requestListener listener){
+        this.mListener = listener;
+    }
+
+    public static interface requestListener{
+        public void onRequestSuccess(ClassRoomBabay.Model data);
+        public void onRequestFailure(SpiceException e);
     }
 
     @Override
