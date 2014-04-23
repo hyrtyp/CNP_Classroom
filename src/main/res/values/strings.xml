@@ -8,4 +8,5 @@
     <string name="nodata_content">暂时无数据，请稍后再试!</string>
     <string name="nodata_addcommentfial">添加失败!</string>
     <string name="nodata_commentfial">暂无评论!</string>
+    <string name="nodata_addphotofial">发送失败!</string>
 </resources>

@@ -72,7 +72,9 @@ public class ClassroomIndexActivity extends BaseActivity{
         renname.setText("班主任："+model2.getData().getRenname());
         rennames.setText("教师："+model2.getData().getRennames());
         titletext.setText(model2.getData().getRoomname());
-        showDetailImage(FaceUtils.getClassRoomImage(model2.getData().getClassroomID(),FaceUtils.FACE_SMALL),classroomimage,false);
+        String bannerUrl = FaceUtils.getClassRoomImage(model2.getData().getClassroomID(),FaceUtils.FACE_SMALL);
+        android.util.Log.i("tag", "bannerUrl:"+bannerUrl);
+        showDetailImage(bannerUrl,classroomimage,false);
         classroominfo.setText(model2.getData().getSignature());
     }
 
