@@ -16,6 +16,9 @@ import com.hyrt.cnp.classroom.requestListener.ClassroomPhotoListRequestListener;
 import com.jingdong.common.frame.BaseActivity;
 import com.octo.android.robospice.persistence.DurationInMillis;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by GYH on 14-1-17.
  */
@@ -26,6 +29,8 @@ public class ClassroomphotolistActivity extends BaseActivity{
     private Photo.Model model;
     private String  Category;
     private TextView bottom_num;
+    private ArrayList<String> imageurls = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,10 @@ public class ClassroomphotolistActivity extends BaseActivity{
             bottom_num.setText("暂无信息");
         }else{
             this.model=model;
+            imageurls.clear();
+            for(int i=0,j=model.getData().size(); i<j; i++){
+                imageurls.add(model.getData().get(i).getImagepics());
+            }
             String[] resKeys=new String[]{"getImagethpath","getTitle"};
             int[] reses=new int[]{R.id.gridview_image,R.id.gridview_name};
             classRoomAdapter = new ClassRoomAdapter(this,model.getData(),R.layout.layout_item_gridview_image1,resKeys,reses);
@@ -55,15 +64,30 @@ public class ClassroomphotolistActivity extends BaseActivity{
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent();
+                /*Intent intent = new Intent();
                 intent.setClass(ClassroomphotolistActivity.this,ClassroomphotoinfoActivity.class);
                 intent.putExtra("vo",model.getData().get(i));
                 intent.putExtra("Category",Category);
-                startActivity(intent);
+                startActivity(intent);*/
+                showPop3(gridView, imageurls, i, ClassroomphotolistActivity.this, mShowPop3Listener);
 //                        ShowPop(gridView,model.getData().get(i).getImagepics());
             }
         });
     }
+
+    showPop3Listener mShowPop3Listener = new showPop3Listener() {
+        @Override
+        public void onClick(int type, int position) {
+            if(type == 1 || type == 2){
+                Intent intent = new Intent();
+                intent.setClass(ClassroomphotolistActivity.this,ClassroomphotoinfoActivity.class);
+                intent.putExtra("vo",model.getData().get(position));
+                intent.putExtra("Category",Category);
+                startActivity(intent);
+                popWin.dismiss();
+            }
+        }
+    };
 
     private void loadData(){
         Intent intent = getIntent();

@@ -74,7 +74,8 @@ public class ClassroomIndexActivity extends BaseActivity{
         titletext.setText(model2.getData().getRoomname());
         String bannerUrl = FaceUtils.getClassRoomImage(model2.getData().getClassroomID(),FaceUtils.FACE_SMALL);
         android.util.Log.i("tag", "bannerUrl:"+bannerUrl);
-        showDetailImage(bannerUrl,classroomimage,false);
+//        showDetailImage(bannerUrl,classroomimage,false);
+        classroomimage.setImageResource(R.drawable.hua2);
         classroominfo.setText(model2.getData().getSignature());
     }
 

@@ -2,6 +2,7 @@ package com.hyrt.cnp.classroom.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -31,6 +32,8 @@ public class ClassroomBabayActivity extends BaseActivity{
     private ClassRoomAdapter classRoomAdapter;
     private ClassRoomBabay.Model model;
     private TextView bottom_num;
+
+    private static final String TAG = "ClassroomBabayActivity";
 
     @Inject
     @Named("babayIndexActivity")

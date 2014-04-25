@@ -2,6 +2,7 @@ package com.hyrt.cnp.classroom.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -18,7 +19,7 @@ import com.hyrt.cnp.classroom.request.ClassroomaddcommentRequest;
 import com.hyrt.cnp.classroom.request.ClassroomcommentRequest;
 import com.hyrt.cnp.classroom.requestListener.ClassroomaddcommentRequestListener;
 import com.hyrt.cnp.classroom.requestListener.ClassroomcommentRequestListener;
-import com.hyrt.cnp.classroom.view.Mylistview;
+import com.hyrt.cnp.base.view.Mylistview;
 import com.jingdong.common.frame.BaseActivity;
 import com.octo.android.robospice.persistence.DurationInMillis;
 
@@ -102,7 +103,10 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
     }
 
     public void ShowSuccess(){
-        Toast.makeText(ClassroomphotoinfoActivity.this,"添加评论成功",Toast.LENGTH_SHORT).show();
+        Toast toast = Toast.makeText(ClassroomphotoinfoActivity.this, "添加评论成功", 0);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+//        Toast.makeText(ClassroomphotoinfoActivity.this,"添加评论成功",Toast.LENGTH_SHORT).show();
         editcommit.setText("");
         LoadData();//刷新
         //隐藏键盘

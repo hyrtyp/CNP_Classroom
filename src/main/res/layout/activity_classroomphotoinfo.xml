@@ -82,7 +82,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/view_margin_small"
                 android:background="@color/cnp_line_color" />
-            <com.hyrt.cnp.classroom.view.Mylistview
+            <com.hyrt.cnp.base.view.Mylistview
                 android:id="@+id/commit_listview"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

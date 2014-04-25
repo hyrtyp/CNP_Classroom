@@ -1,6 +1,10 @@
 package com.hyrt.cnp.classroom.requestListener;
 
 import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.hyrt.cnp.base.account.model.Comment;
 import com.hyrt.cnp.base.account.requestListener.BaseRequestListener;
@@ -12,32 +16,42 @@ import com.octo.android.robospice.persistence.exception.SpiceException;
  * Created by GYH on 14-1-16.
  */
 public class ClassroomaddcommentRequestListener extends BaseRequestListener{
+    private Context context;
     /**
      * @param context
      */
     public ClassroomaddcommentRequestListener(Activity context) {
         super(context);
+        this.context = context;
     }
 
     @Override
     public void onRequestFailure(SpiceException e) {
-        showMessage(R.string.nodata_title,R.string.nodata_content);
+        Toast toast = Toast.makeText(context, getString(R.string.nodata_addcommentfial), 0);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
         super.onRequestFailure(e);
     }
 
     @Override
     public void onRequestSuccess(Object data) {
         super.onRequestSuccess(data);
+        Log.i("tag", "data:"+data);
         if(data!=null){
-            ClassroomphotoinfoActivity activity = (ClassroomphotoinfoActivity)context.get();
+            ClassroomphotoinfoActivity activity = (ClassroomphotoinfoActivity)context;
             Comment.Model3 result= (Comment.Model3)data;
+            Log.i("tag", "msg:"+result.getMsg()+" code:"+result.getCode());
             if(result.getCode().equals("200")){
                 activity.ShowSuccess();
             }else{
-                showMessage(R.string.nodata_title,R.string.nodata_addcommentfial);
+                Toast toast = Toast.makeText(context, getString(R.string.nodata_addcommentfial), 0);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
             }
         }else{
-            showMessage(R.string.nodata_title,R.string.nodata_addcommentfial);
+            Toast toast = Toast.makeText(context, getString(R.string.nodata_addcommentfial), 0);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
         }
 
     }
