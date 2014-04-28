@@ -83,6 +83,9 @@ public class ClassroomphotolistActivity extends BaseActivity{
                 intent.setClass(ClassroomphotolistActivity.this,ClassroomphotoinfoActivity.class);
                 intent.putExtra("vo",model.getData().get(position));
                 intent.putExtra("Category",Category);
+                if(type == 1){
+                    intent.putExtra("etFocus", true);
+                }
                 startActivity(intent);
                 popWin.dismiss();
             }

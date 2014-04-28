@@ -36,6 +36,8 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
     private Mylistview listView;
     private Photo photo;
     private ClassRoomAdapter classRoomAdapter;
+    private boolean etFocus = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,15 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
         initView();
         initData();
         LoadData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(etFocus){
+            editcommit.requestFocus();
+            etFocus = false;
+        }
     }
 
     private void initView(){
@@ -74,6 +85,7 @@ public class ClassroomphotoinfoActivity extends BaseActivity{
     //TODO 专辑名称是什么
     private void initData(){
         Intent intent = getIntent();
+        etFocus = intent.getBooleanExtra("etFocus", false);
         photo=(Photo)intent.getSerializableExtra("vo");
         photoname.setText("照片名称："+photo.getTitle());
         String Category=intent.getStringExtra("Category");
