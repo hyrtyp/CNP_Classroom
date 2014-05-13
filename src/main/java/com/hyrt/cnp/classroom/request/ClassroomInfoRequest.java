@@ -5,7 +5,7 @@ import android.content.Context;
 import com.google.inject.Inject;
 import com.hyrt.cnp.base.account.model.Base;
 import com.hyrt.cnp.base.account.request.BaseRequest;
-import com.hyrt.cnp.account.service.ClassRoomService;
+import com.hyrt.cnp.base.account.service.ClassRoomService;
 
 /**
  * Created by GYH on 14-1-16.
