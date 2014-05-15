@@ -30,12 +30,19 @@ public class ClassroomphotolistActivity extends BaseActivity{
     private String  Category;
     private TextView bottom_num;
     private ArrayList<String> imageurls = new ArrayList<String>();
+    private ArrayList<String> commentNums = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classroomphotolist);
         initView();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadData();
     }
 
@@ -48,8 +55,10 @@ public class ClassroomphotolistActivity extends BaseActivity{
         }else{
             this.model=model;
             imageurls.clear();
+            commentNums.clear();
             for(int i=0,j=model.getData().size(); i<j; i++){
                 imageurls.add(model.getData().get(i).getImagepics());
+                commentNums.add(model.getData().get(i).getCommentNum()+"");
             }
             String[] resKeys=new String[]{"getImagethpath","getTitle"};
             int[] reses=new int[]{R.id.gridview_image,R.id.gridview_name};
@@ -69,7 +78,7 @@ public class ClassroomphotolistActivity extends BaseActivity{
                 intent.putExtra("vo",model.getData().get(i));
                 intent.putExtra("Category",Category);
                 startActivity(intent);*/
-                showPop3(gridView, imageurls, i, ClassroomphotolistActivity.this, mShowPop3Listener);
+                showPop3(gridView, imageurls, commentNums, i, ClassroomphotolistActivity.this, mShowPop3Listener, false);
 //                        ShowPop(gridView,model.getData().get(i).getImagepics());
             }
         });

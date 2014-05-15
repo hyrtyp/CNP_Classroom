@@ -16,15 +16,29 @@ public class ClassroomcommentRequest extends BaseRequest{
     private CommentService schoolListService;
     private String infoid;
     private String siteid;
+    private String more = "1";
 
     public ClassroomcommentRequest(Class clazz, Context context, String infoid, String siteid) {
         super(clazz, context);
         this.infoid=infoid;
         this.siteid= siteid;
     }
+
+    public ClassroomcommentRequest(Class clazz, Context context, String infoid, String siteid, String more) {
+        super(clazz, context);
+        this.infoid=infoid;
+        this.siteid= siteid;
+        this.more = more;
+    }
+
     @Override
     public Base run() {
-        return schoolListService.getCommentlistData(getRestTemplate(),infoid,siteid);
+        if("1".equals(more)){
+            return schoolListService.getCommentlistData(getRestTemplate(),infoid,siteid);
+        }else{
+            return schoolListService.getCommentlistData(getRestTemplate(),infoid,siteid, more);
+        }
+
     }
 
 
