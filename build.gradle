@@ -35,4 +35,6 @@ dependencies {
         exclude module:'support-v4'
     }
     compile project(':CNP_Base')
+    compile project(':CNP_Dynamic')
+
 }

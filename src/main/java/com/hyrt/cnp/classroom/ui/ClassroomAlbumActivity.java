@@ -75,6 +75,7 @@ public class ClassroomAlbumActivity extends BaseActivity{
                 intent.setClass(ClassroomAlbumActivity.this,ClassroomphotolistActivity.class);
                 intent.putExtra("vo",model.getData().get(i));
                 intent.putExtra("Category",Category);
+                intent.putExtra("album", model.getData().get(i));
                 startActivity(intent);
             }
         });
