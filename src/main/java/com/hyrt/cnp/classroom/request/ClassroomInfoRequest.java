@@ -31,6 +31,6 @@ public class ClassroomInfoRequest extends BaseRequest{
     }
 
     public String getcachekey(){
-        return "classroomInfo1";
+        return "classroomInfo1"+System.currentTimeMillis();
     }
 }
