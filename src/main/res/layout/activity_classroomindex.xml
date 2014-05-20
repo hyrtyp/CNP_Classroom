@@ -27,7 +27,8 @@
             android:layout_alignParentBottom="true"
             android:textCursorDrawable="@null"
             android:singleLine="true"
-            android:imeOptions="actionDone"/>
+            android:imeOptions="actionDone"
+            android:imeActionLabel="修改"/>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
