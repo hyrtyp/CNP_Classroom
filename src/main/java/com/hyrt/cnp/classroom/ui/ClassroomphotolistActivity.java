@@ -8,6 +8,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.hyrt.cnp.base.account.model.Album;
+import com.hyrt.cnp.base.account.model.BaseTest;
 import com.hyrt.cnp.base.account.model.Dynamic;
 import com.hyrt.cnp.base.account.model.DynamicPhoto;
 import com.hyrt.cnp.base.account.model.Photo;
@@ -16,12 +17,16 @@ import com.hyrt.cnp.classroom.adapter.ClassRoomAdapter;
 import com.hyrt.cnp.classroom.request.ClassroomPhotoListRequest;
 import com.hyrt.cnp.classroom.requestListener.ClassroomPhotoListRequestListener;
 import com.hyrt.cnp.dynamic.adapter.DynamicPhotoInfoAdapter;
+import com.hyrt.cnp.dynamic.request.AddPhotoRequest;
 import com.hyrt.cnp.dynamic.request.DynamicPhotoListRequest;
+import com.hyrt.cnp.dynamic.requestListener.AddPhotoRequestListener;
 import com.hyrt.cnp.dynamic.requestListener.DynamicPhotoListRequestListener;
 import com.hyrt.cnp.dynamic.ui.DynamicPhotoInfoActivity;
 import com.jingdong.common.frame.BaseActivity;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
+
+import net.oschina.app.AppContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,13 +86,12 @@ public class ClassroomphotolistActivity extends BaseActivity{
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                /*Intent intent = new Intent();
-                intent.setClass(ClassroomphotolistActivity.this,ClassroomphotoinfoActivity.class);
-                intent.putExtra("vo",model.getData().get(i));
-                intent.putExtra("Category",Category);
-                startActivity(intent);*/
-                showPop3(gridView, imageurls, commentNums, i, ClassroomphotolistActivity.this, mShowPop3Listener, false);
-//                        ShowPop(gridView,model.getData().get(i).getImagepics());
+                if(AppContext.getInstance().mUserDetail != null
+                        && AppContext.getInstance().mUserDetail.getGroupID() != 7){
+                    showPop3(gridView, imageurls, commentNums, i, ClassroomphotolistActivity.this, mShowPop3Listener, true);
+                }else{
+                    showPop3(gridView, imageurls, commentNums, i, ClassroomphotolistActivity.this, mShowPop3Listener, false);
+                }
             }
         });
     }
@@ -111,6 +115,24 @@ public class ClassroomphotolistActivity extends BaseActivity{
                 }
                 startActivity(intent);
                 popWin.dismiss();
+            }else if(type == 3){
+                AddPhotoRequestListener requestListener
+                        = new AddPhotoRequestListener(ClassroomphotolistActivity.this);
+                requestListener.setListener(new AddPhotoRequestListener.RequestListener() {
+                    @Override
+                    public void onRequestSuccess(Object o) {
+                        loadData();
+                    }
+
+                    @Override
+                    public void onRequestFailure(SpiceException e) {}
+                });
+                DynamicPhoto mPhoto = new DynamicPhoto();
+                mPhoto.setPhotoID(model.getData().get(position).getPhotoID());
+                AddPhotoRequest request = new AddPhotoRequest(
+                        BaseTest.class, ClassroomphotolistActivity.this, mPhoto);
+                spiceManager.execute(request, request.getcachekey(), 1,
+                        requestListener.startDel());
             }
         }
     };
